@@ -15,13 +15,14 @@ public class TwitterAnalysis {
 
     private static Pattern emojiPattern = Pattern.compile(":[)(/|DSP*O3V]|<3|:'\\(|>:O|☺|☻|♥|♦|♣|♠|•|○|◘|◙|♂|♀|♪|♫|☼|►|◄|↕");
 
-    private static Pattern hashtagPattern = Pattern.compile("#(\\w+)");
+    private static Pattern hashtagPattern = Pattern.compile("#(\\w+)", Pattern.UNICODE_CHARACTER_CLASS);
 
     private static Pattern mentionPattern = Pattern.compile("@(\\w+)");
 
 
     public static void main(String[] args) {
 
+		System.setProperty("file.encoding", "ISO-8859-9");
 
         Params params;
         try {
@@ -40,7 +41,7 @@ public class TwitterAnalysis {
 
         try (FileInputStream inputStream = new FileInputStream(fileName);
 
-             Scanner sc = new Scanner(inputStream, "windows-1254")) {
+             Scanner sc = new Scanner(inputStream, "ISO-8859-9")) {
 
             while (sc.hasNextLine()) {
 
